@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h4>동아리 목록<h4>
+        <ul>
+            {% for club in clubs %}
+            <ul><a href="{% url 'club_detail' club.id %}">{{ club.name }}</a></ul>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'add_club' %}">Add New Club</a>
+{% endblock %}

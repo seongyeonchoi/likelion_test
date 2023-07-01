@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>수정</h1>
+    
+    <form method="post">
+        {% csrf_token %}
+        <label for="name">이름:</label>
+        <input type="text" id="name" name="name" value="{{ club.name }}" required>
+        <br>
+        <label for="introduction">소개:</label>
+        <textarea id="introduction" name="introduction" required>{{ club.introduction }}</textarea>
+        <br>
+        <label for="number">인원수:</label>
+        <input type="number" id="number" name="number" value="{{ club.number }}" required>
+        <br>
+        <input type="submit" value="Update Club">
+    </form>
+    {% endblock %}

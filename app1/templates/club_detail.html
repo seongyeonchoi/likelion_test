@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+<head>
+    <title>Club Detail</title>
+</head>
+<body>
+    <h1>{{ club.name }}</h1>
+    <p>{{ club.introduction }}</p>
+    <p>인원수: {{ club.number }}</p>
+    <h2>Comments</h2>
+    <ul>
+        {% for comment in club.comment_set.all %}
+        <li>{{ comment.content }} - {{ comment.created_at }}</li>
+        {% endfor %}
+    </ul>
+    
+    <form method="post" action="{% url 'add_comment' club.id %}">
+        {% csrf_token %}
+        {{ comment_form.as_p }}
+        <input type="submit" value="Add Comment">
+    </form>
+
+   <form action="{% url 'edit_club' club.id %}" method="post">
+    {% csrf_token %}
+    <input type="submit" value="Edit Club">
+</form>
+
+    
+    <form action="{% url 'delete_club' club.id %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Delete Club">
+    </form>
+</body>
+{% endblock %}
